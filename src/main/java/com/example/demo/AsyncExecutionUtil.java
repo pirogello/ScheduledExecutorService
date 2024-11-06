@@ -34,8 +34,9 @@ public class AsyncExecutionUtil {
 
 
     public <T> CompletableFuture<T> executeDelayed(Supplier<T> task, Predicate<T> condition, long delayInMs) {
-        //CompletableFuture<T> future = CompletableFuture.supplyAsync(task, delayedExecutor(delayInMs, TimeUnit.MILLISECONDS));
-        CompletableFuture<T> future = CompletableFuture.supplyAsync(task, myExecutor);
+        //TODO если поменять строки то работает
+        CompletableFuture<T> future = CompletableFuture.supplyAsync(task, delayedExecutor(delayInMs, TimeUnit.MILLISECONDS));
+        //CompletableFuture<T> future = CompletableFuture.supplyAsync(task, myExecutor);
 
         return future.thenCompose(result -> {
             if (condition.test(result)) {
@@ -47,8 +48,9 @@ public class AsyncExecutionUtil {
     }
 
     public <T> CompletableFuture<T> executeDelayedWithRetries(Supplier<T> task, Predicate<T> condition, long delayInMs, int retries) {
-        //CompletableFuture<T> future = CompletableFuture.supplyAsync(task, delayedExecutor(delayInMs, TimeUnit.MILLISECONDS));
-        CompletableFuture<T> future = CompletableFuture.supplyAsync(task, myExecutor);
+        //TODO если поменять строки то работает
+        CompletableFuture<T> future = CompletableFuture.supplyAsync(task, delayedExecutor(delayInMs, TimeUnit.MILLISECONDS));
+        //CompletableFuture<T> future = CompletableFuture.supplyAsync(task, myExecutor);
         System.out.println("In executeDelayedWithRetries");
         return future.thenCompose(result -> {
             if (condition.test(result)) {
