@@ -33,7 +33,7 @@ public class AsyncExecutionUtil {
 
 
     public <T> CompletableFuture<T> executeDelayed(Supplier<T> task, Predicate<T> condition, long delayInMs) {
-        //TODO если поменять строки то работает
+        //TODO поменять шедулер на обычный пул потоков
         CompletableFuture<T> future = CompletableFuture.supplyAsync(task, delayedExecutor(delayInMs, TimeUnit.MILLISECONDS));
         //CompletableFuture<T> future = CompletableFuture.supplyAsync(task, myExecutor);
 
@@ -47,7 +47,7 @@ public class AsyncExecutionUtil {
     }
 
     public <T> CompletableFuture<T> executeDelayedWithRetries(Supplier<T> task, Predicate<T> condition, long delayInMs, int retries) {
-        //TODO если поменять строки то работает
+        //TODO поменять шедулер на обычный пул потоков
         CompletableFuture<T> future = CompletableFuture.supplyAsync(task, delayedExecutor(delayInMs, TimeUnit.MILLISECONDS));
         //CompletableFuture<T> future = CompletableFuture.supplyAsync(task, myExecutor);
         System.out.println("In executeDelayedWithRetries");
